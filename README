@@ -1,0 +1,30 @@
+1.Name: Tianyu Gao
+
+2.USCID: 2820-0371-88
+
+3.In this project,I wrote one client program and four server-side program including three hospital servers and a scheduler. In client program, the core functions are to send requests and recieve results. The scheduler is for message exchange between the client and hospitals. The hospital will handle the map.txt first and calculate the shortest distance and availability.
+
+4.The project consists of 8 files:
+1)client.cpp:responsible for sending the request and recieve the results.
+2)scheduler.cpp:responsible for recieving the request from the client and forwarding to hospitals if available, and get the responses from hospitals and decide which hospital will be assigned.
+3)scheduler.h:including the definition of some data structures for scheduler.cpp.
+4)hospitalA/B/C: responsible for initializing the graph of locations according to the map.txt. It uses adjacent matrics to record the distance and locations.Then according to the Dijkstra’s shortest path algorithm, each hospital will calculate the shortest path to each locations and store in a 2D array for future use.They are also responsible for calculating the scores and availability.
+5)hospital.h: this head file is shared by hospitalA/B/C.cpp.
+6)After the first run, the program will produce an info.txt which is used for storing the changed occupancy.
+
+5.
+a)Boot-up:the hospitals will send the capability and initial occupancy to the scheduler in a string format(capacity+" "+occupancy).
+b)Foward:the client will send the location number to the scheduler int a string format(location)
+c)Scoring: the scheduler will send the location to proper hospitals and the hospitals will response distance and score in a format of string (distance+" "+score)
+d)Reply:the schedule will reply to the client:
+        "NF"-->location not find
+        "N"-->Score=None,No assignment
+        "OL"-->All hospitals are unavailable due to overload
+        "A"--assigned to hospital A
+        "B"--assigned to hospital B
+        "C"--assigned to hospital C
+Simultaneously, the scheduler will tell the assigned hospital to update its occupancy.
+
+6.Basically, in any conditions,the program will operate.
+
+7.I borrowed some codes from the Beej’s Guide to Network Programming. Those are some basic usage of TCP and UDP socket APIs such as socket(),connnet(),bind(),etc.
