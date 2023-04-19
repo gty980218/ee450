@@ -1,5 +1,5 @@
 1.Name: TY g
-Ddd
+Dddd
 2.USCID: 
 
 3.In this project,I wrote one client program and four server-side program including three hospital servers and a scheduler. In client program, the core functions are to send requests and recieve results. The scheduler is for message exchange between the client and hospitals. The hospital will handle the map.txt first and calculate the shortest distance and availability.
